@@ -8,16 +8,38 @@
 
 {{ if gt (len $randTags) 1 }}
 
+{{ if ne .Site.Params.SectionsInHome 0 }}
+
+{{ $randSections := shuffle (where .Site.Sections ".Title" "not in" "Posts Addons") }}
+{{ if gt (len $randSections) 1 }}
+
+
 <div class="columns is-centered has-text-centered">
-    <div class="column is-10">
+    <div class="column is-one-third">
+        <div class="content">
+            <a href="{{ "/sections/" | relURL }}">
+                <h1>Categories</h1>
+            </a>
+            <p class="tags-summary">
+                {{ range sort (first .Site.Params.SectionsInHome $randSections) "Title" }}
+                <a href="{{ .RelPermalink }}">
+                    <span class="tag is-light is-large">
+                        {{ .Title | humanize | title }}
+                    </span>
+                </a>
+                {{ end }}
+            </p>
+        </div>
+    </div>
+    <div class="column is-two-thirds">
         <div class="content">
             <a href="{{ "/tags/" | relURL }}">
-                <h1>Read articles by tags</h1>
+                <h2>Tags</h2>
             </a>
             <p class="tags-summary">
                 {{ range $name := $randTags }}
                 <a href="{{ "/tags/" | relURL }}{{ $name | urlize }}">
-                    <span class="tag is-dark is-large is-rounded">
+                    <span class="tag is-white is-medium is-rounded">
                         {{ replace $name "-" " " | title }}
                     </span>
                 </a>
@@ -25,8 +47,11 @@
             </p>
         </div>
     </div>
+    
 </div>
 <br>
 
+{{ end }}
+{{ end }}
 {{ end }}
 {{ end }}

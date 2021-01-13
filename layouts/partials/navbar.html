@@ -1,4 +1,4 @@
-<nav class="navbar is-dark" role="navigation" aria-label="main navigation">
+<nav class="navbar is-light" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
     <a class="navbar-item" href={{ "/" | relURL }}>
       {{ with .Site.Title }}
@@ -42,8 +42,7 @@
         <i class="fa fa-github fa-2x"></i>
       </a>
       {{ end }}
-
-      {{ with .Site.Params.GoogleSearch }}
+      <!-- {{ with .Site.Params.GoogleSearch }}
       <div class="navbar-item">
         <form id="cse-search-box-form-id" onsubmit="return executeQuery();" role="search">
           <div class="field has-addons">
@@ -61,7 +60,7 @@
           </div>
         </form>
       </div>
-      {{ end }}
+      {{ end }} -->
     </div>
   </div>
 </nav>
